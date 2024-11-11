@@ -1,19 +1,4 @@
 class DirectorsController < ApplicationController
-  def update
-    the_id = params.fetch("an_id")
-    matching_records = Director.where({:id => the_id})
-    the_director = matching_records.at(0)
-  
-    the_director.name = params.fetch("query_name")
-    the_director.dob = params.fetch("query_dob")
-    the_director.bio = params.fetch("query_bio")
-    the_director.image = params.fetch("query_image")
-  
-    the_director.save
-  
-    redirect_to("/directors/#{the_director.id}")
-
-    end 
 
     def destroy
       the_id = params.fetch("an_id")
@@ -28,19 +13,36 @@ class DirectorsController < ApplicationController
       end
     end
 
+    def update
+      puts params.inspect
+      the_id = params.fetch("the_id")
+      matching_records = Director.where({:id => the_id})
+      the_director = matching_records.at(0)
+    
+      the_director.name = params.fetch("the_name")
+      the_director.dob = params.fetch("the_dob")
+      the_director.bio = params.fetch("the_bio")
+      the_director.image = params.fetch("the_image")
+    
+      the_director.save
+    
+      redirect_to("/directors/#{the_director.id}")
+  
+    end 
+
     def create
      
          d = Director.new
-         d.name = params.fetch("query_name")
-         d.dob = params.fetch("query_dob")
-         d.bio = params.fetch("query_bio")
-         d.image = params.fetch("query_image")
+         d.name = params.fetch("the_name")
+         d.dob = params.fetch("the_dob")
+         d.bio = params.fetch("the_bio")
+         d.image = params.fetch("the_image")
         
          d.save
      
          redirect_to("/directors")
      
-       end  
+    end  
 
   def index
     matching_directors = Director.all
