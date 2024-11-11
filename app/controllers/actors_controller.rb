@@ -14,4 +14,30 @@ class ActorsController < ApplicationController
       
     render({ :template => "actor_templates/show" })
   end
+
+  def create
+    # retrieve the user's inputs from params
+    # params hash looks like this
+    
+      new_actor = Actor.new
+      new_actor.name = params.fetch("the_name")
+      new_actor.dob = params.fetch("the_dob")
+      new_actor.bio = params.fetch("the_bio")
+      new_actor.image = params.fetch("the_image")
+    
+      new_actor.save
+      
+      redirect_to("/actors")
+    end 
+
+    def destroy
+      the_id = params.fetch("an_id")
+
+      matching_records = Actor.where({ :id => the_id })
+      the_movie = matching_records.at(0)
+      the_movie.destroy
+
+      redirect_to("/actors")
+    end
+
 end
