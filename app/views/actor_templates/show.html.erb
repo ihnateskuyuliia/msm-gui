@@ -24,13 +24,13 @@
   </div>
 
   <div>
-    <label for="bio_fild">Bio</label>
-    <textarea id="bio_field" name="the_bio" rows="3" value ="<%= @the_actor.bio %>"></textarea>
+    <label for="bio_field">Bio</label>
+    <input type="text" id="bio_field" name="the_bio" value ="<%= @the_actor.bio %>">
   </div>
 
   <div>
     <label for="image_field">Image</label>
-    <input type="text" id="image_field" name="the_image" value ="<%= @the_actor.image %>">
+    <input type="submit" id="image_field" name="the_image" value ="<%= @the_actor.image %>">
   </div>
 
   <button>Update actor</button>
